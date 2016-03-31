@@ -19,7 +19,13 @@ public class Sheep implements Task {
     public Sheep() {
 
     }
-
+    
+    public Sheep(int x, int y, int id){
+        this.x = x;
+        this.y = y;
+        this.id = id;
+    }
+    
     public Sheep(int x, int y, int id, PrintWriter pw) {
         this.x = x;
         this.y = y;

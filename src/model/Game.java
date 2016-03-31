@@ -6,6 +6,7 @@
 package model;
 
 import gui.GUI;
+import gui.GUIController;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,6 +17,7 @@ import protocol.QuickProtocol;
  * @author Arces
  */
 public class Game extends Thread {
+
     public ArrayList<Sheep> sheepList;
     private QuickProtocol qp;
     private Timer timer;
@@ -23,24 +25,24 @@ public class Game extends Thread {
     public static Game gameInstance = new Game();
 
     private Game() {
+        this.gui = new GUI();
+        gui.setVisible(true);
+
         this.timer = new Timer(true);
         timer.scheduleAtFixedRate(new Ticker(), 0, 30);
         this.sheepList = new ArrayList<>();
-        this.qp = new QuickProtocol(8,500, gameInstance);
+        this.qp = new QuickProtocol(8, 500, gameInstance);
     }
-    
-    public void startProcol(){
+
+    public void startProtocol() {
         this.qp.Startpool();
         this.qp.start();
     }
-    public static Game getInstance(){
+
+    public static Game getInstance() {
         return gameInstance;
     }
-    
-    public void setGUI(GUI gui){
-        this.gui = gui;
-    }
-    
+
     @Override
     public void run() {
         while (true) {
@@ -49,6 +51,7 @@ public class Game extends Thread {
     }
 
     public class Ticker extends TimerTask {
+
         @Override
         public void run() {
             //get data from protocol hereeeeee
@@ -66,7 +69,11 @@ public class Game extends Thread {
     }
 
     public synchronized int generateID() {
-        return sheepList.get(sheepList.size() - 1).getId() + 1;
+        if (sheepList.isEmpty()) {
+            return 1;
+        } else {
+            return sheepList.get(sheepList.size() - 1).getId() + 1;
+        }
     }
 
     public synchronized String getScreenShot() {

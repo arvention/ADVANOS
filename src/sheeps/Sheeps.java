@@ -8,6 +8,7 @@ package sheeps;
 import gui.GUI;
 import gui.GUIController;
 import model.Game;
+import model.Sheep;
 
 /**
  *
@@ -30,11 +31,14 @@ public class Sheeps {
             ex.printStackTrace();
         }
         
-        GUIController guiController = GUIController.getInstance();
-        guiController.getGUI().setVisible(true);
+    //    GUIController guiController = GUIController.getInstance();
+      //  guiController.getGUI().setVisible(true);
         
         Game g = Game.getInstance();
-        g.setGUI(guiController.getGUI());
+        g.startProtocol();
+        
+        g.addSheep(new Sheep(1,2, g.generateID()));
+        g.addSheep(new Sheep(3,2, g.generateID()));
     }
     
 }
