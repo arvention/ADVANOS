@@ -62,7 +62,7 @@ public class Listener extends Thread{
 
                 list = line.split(",");
                 new_x = Integer.parseInt(list[0]);
-                new_y = Integer.parseInt(list[0]);
+                new_y = Integer.parseInt(list[1]);
                 //update sheep
                  this.sheep.setX(this.sheep.getX() + new_x);
                  this.sheep.setY(this.sheep.getY() + new_y);
