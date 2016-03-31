@@ -6,6 +6,7 @@
 package sheeps;
 
 import gui.GUI;
+import gui.GUIController;
 import model.Game;
 
 /**
@@ -29,11 +30,11 @@ public class Sheeps {
             ex.printStackTrace();
         }
         
-        GUI gui = new GUI();
-        gui.setVisible(true);
+        GUIController guiController = GUIController.getInstance();
+        guiController.getGUI().setVisible(true);
         
         Game g = Game.getInstance();
-        g.setGUI(gui);
+        g.setGUI(guiController.getGUI());
     }
     
 }
