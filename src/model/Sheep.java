@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.PrintWriter;
 import threadpool.Task;
 /**
  *
@@ -12,11 +13,13 @@ import threadpool.Task;
  */
 public class Sheep implements Task{
     private int x, y, id;
-
-    public Sheep(int x, int y, int id) {
+    private PrintWriter pw;
+    
+    public Sheep(int x, int y, int id,PrintWriter pw) {
         this.x = x;
         this.y = y;
         this.id = id;
+        this.pw = pw;
     }
     /**
      * @return the x
@@ -45,9 +48,9 @@ public class Sheep implements Task{
     public void setY(int y) {
         this.y = y;
     }
-
+    
     @Override
     public void work() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pw.println(this.x+","+this.y);
     }
 }

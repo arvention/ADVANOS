@@ -16,7 +16,7 @@ import protocol.QuickProtocol;
  * @author Arces
  */
 public class Game extends Thread{
-    private ArrayList<Sheep> sheepList;
+    public ArrayList<Sheep> sheepList;
     private QuickProtocol qp;
     private Timer timer;
     //UI
@@ -42,7 +42,11 @@ public class Game extends Thread{
         }
     }
     
-    public void addSheep(Sheep sheep){
+    public synchronized void addSheep(Sheep sheep){
         sheepList.add(sheep);
     }
+    
+    public synchronized ArrayList<Sheep> getSheeps(){
+        return this.sheepList;
+    } 
 }
