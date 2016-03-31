@@ -16,34 +16,40 @@ import protocol.QuickProtocol;
  * @author Arces
  */
 public class Game extends Thread {
-
     public ArrayList<Sheep> sheepList;
     private QuickProtocol qp;
     private Timer timer;
-    private GUI view;
+    private GUI gui;
+    private static Game gameInstance = new Game();
 
-    public Game(GUI view) {
-        this.view = view;
+    private Game() {
         this.timer = new Timer(true);
         timer.scheduleAtFixedRate(new Ticker(), 0, 30);
-
+        this.sheepList = new ArrayList<>();
         //this.qp = new QuickProtocol(,500, this);
     }
-
+    
+    public static Game getInstance(){
+        return gameInstance;
+    }
+    
+    public void setGUI(GUI gui){
+        this.gui = gui;
+    }
+    
     @Override
     public void run() {
         while (true) {
-
+            //do nothing
         }
     }
 
     public class Ticker extends TimerTask {
-
         @Override
         public void run() {
             //get data from protocol hereeeeee
 
-            //update UI hereeee UI.update(sheepList)
+            gui.update(sheepList);
         }
     }
 

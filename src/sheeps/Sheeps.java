@@ -6,6 +6,7 @@
 package sheeps;
 
 import gui.GUI;
+import model.Game;
 
 /**
  *
@@ -30,6 +31,9 @@ public class Sheeps {
         
         GUI gui = new GUI();
         gui.setVisible(true);
+        
+        Game g = Game.getInstance();
+        g.setGUI(gui);
     }
     
 }
