@@ -11,6 +11,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import model.*;
 import threadpool.*;
 
 /**
@@ -23,11 +25,13 @@ public class QuickProtocol extends Thread {
     private final int port =1108;
     private Boolean live = true;
     private ThreadPool pool;
+    private Game game;
     
     
-    public QuickProtocol(int worker, int tasks){
+    public QuickProtocol(int worker, int tasks, Game g){
+        this.game = g;
         this.pool = new ThreadPool(worker, tasks);
-        this.pool.start();
+        this.pool.start();    
     }
     
     @Override
@@ -38,15 +42,15 @@ public class QuickProtocol extends Thread {
         ServerSocket sSoc; 
         Socket soc=null;
         PrintWriter sender = null;
-            
+        Listener l;    
         
         while(live){
             try {
                 sSoc = new ServerSocket(80); 
                 soc =sSoc.accept();
-                soc.getOutputStream();
+                l = new Listener(soc ,this.game);
                 
-                
+
                 
                 
             } catch (IOException ex) {
@@ -56,9 +60,13 @@ public class QuickProtocol extends Thread {
         }
     }
     
-    public void Broadcast(){     
-       //foreach sheep add in task;
+    public void Broadcast(){
+        ArrayList<Sheep> sheeps = this.game.getSheeps();
         
+        for(Sheep s: sheeps){
+            this.pool.putTask((Task) s);
+        }
+       //foreach sheep add in task;      
     }
     
 }
