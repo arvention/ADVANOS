@@ -16,7 +16,7 @@ import protocol.QuickProtocol;
  *
  * @author Arces
  */
-public class Game extends Thread {
+public class Game{
 
     public ArrayList<Sheep> sheepList;
     private QuickProtocol qp;
@@ -27,35 +27,34 @@ public class Game extends Thread {
     private Game() {
         this.gui = new GUI();
         gui.setVisible(true);
-
-        this.timer = new Timer(true);
-        timer.scheduleAtFixedRate(new Ticker(), 0, 30);
         this.sheepList = new ArrayList<>();
-        this.qp = new QuickProtocol(8, 500, gameInstance);
     }
 
     public void startProtocol() {
+        this.qp = new QuickProtocol(8, 500, gameInstance);
         this.qp.Startpool();
         this.qp.start();
+        this.timer = new Timer(true);
+        timer.scheduleAtFixedRate(new Ticker(), 0, 30);
     }
 
     public static Game getInstance() {
         return gameInstance;
     }
-
+/*
     @Override
     public void run() {
         while (true) {
             //do nothing
         }
     }
-
+*/
     public class Ticker extends TimerTask {
 
         @Override
         public void run() {
             //get data from protocol hereeeeee
-
+            qp.Broadcast();
             gui.update(sheepList);
         }
     }
