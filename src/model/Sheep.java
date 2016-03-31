@@ -63,7 +63,7 @@ public class Sheep implements Task {
 
     @Override
     public void work(){
-        pw.print(Game.gameInstance.getScreenShot());
+        pw.println(Game.gameInstance.getScreenShot());
     }
 
     /**
