@@ -29,6 +29,10 @@ public class Game extends Thread {
         this.qp = new QuickProtocol(8,500, gameInstance);
     }
     
+    public void startProcol(){
+        this.qp.Startpool();
+        this.qp.start();
+    }
     public static Game getInstance(){
         return gameInstance;
     }
