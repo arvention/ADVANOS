@@ -20,7 +20,7 @@ public class Game extends Thread {
     private QuickProtocol qp;
     private Timer timer;
     private GUI gui;
-    private static Game gameInstance = new Game();
+    public static Game gameInstance = new Game();
 
     private Game() {
         this.timer = new Timer(true);
