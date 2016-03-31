@@ -73,4 +73,44 @@ public class GUI extends javax.swing.JFrame {
     private int columns;
     private int rows;
     private ArrayList<Sheep> currentSheeps;
+
+    public javax.swing.JPanel getPanelMain() {
+        return panelMain;
+    }
+
+    public void setPanelMain(javax.swing.JPanel panelMain) {
+        this.panelMain = panelMain;
+    }
+
+    public JLabel[][] getGrid() {
+        return grid;
+    }
+
+    public void setGrid(JLabel[][] grid) {
+        this.grid = grid;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public ArrayList<Sheep> getCurrentSheeps() {
+        return currentSheeps;
+    }
+
+    public void setCurrentSheeps(ArrayList<Sheep> currentSheeps) {
+        this.currentSheeps = currentSheeps;
+    }
 }
