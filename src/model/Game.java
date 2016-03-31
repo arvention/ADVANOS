@@ -55,7 +55,7 @@ public class Game extends Thread {
         return this.sheepList;
     }
 
-    public synchronized int generateID(ArrayList<Sheep> sheepList) {
+    public synchronized int generateID() {
         return sheepList.get(sheepList.size() - 1).getId() + 1;
     }
 
