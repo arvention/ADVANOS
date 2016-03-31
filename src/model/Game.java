@@ -62,7 +62,10 @@ public class Game{
     public synchronized void addSheep(Sheep sheep) {
         sheepList.add(sheep);
     }
-
+    
+    public synchronized void remove(Sheep s){
+        this.sheepList.remove(s);
+    }
     public synchronized ArrayList<Sheep> getSheeps() {
         return this.sheepList;
     }
@@ -75,7 +78,7 @@ public class Game{
         }
     }
 
-    public synchronized String getScreenShot() {
+    public String getScreenShot() {
         String ss = "";
         for (Sheep s : sheepList) {
             ss += s.getId() + "," + s.getX() + "," + s.getY() + "\n"; //"id,x,y\n"
