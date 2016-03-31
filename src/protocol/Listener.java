@@ -42,9 +42,14 @@ public class Listener extends Thread{
         this.game = g;
         PrintWriter pw = new PrintWriter(new 
                 BufferedWriter(
-                    new OutputStreamWriter(soc.getOutputStream())), true); 
-        this.sheep = new Sheep(1,1,1,pw);
+                    new OutputStreamWriter(soc.getOutputStream())), true);
+        int id = game.generateID();
+        int initialx=1;
+        int initialy=1;
+        pw.println();
+        this.sheep = new Sheep(id,initialx,initialy,pw);
         this.game.addSheep(sheep);
+        this.pw.println(id+","+initialx+","+initialy);
     }
     
     public void run(){
