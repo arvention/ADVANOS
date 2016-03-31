@@ -47,21 +47,18 @@ public class QuickProtocol extends Thread {
         ServerSocket sSoc; 
         Socket soc=null;
         PrintWriter sender = null;
-        Listener l;    
-        
+        Listener l;
+        try {
+            sSoc = new ServerSocket(port); 
         while(live){
-            try {
-                sSoc = new ServerSocket(80); 
-                soc =sSoc.accept();
-                l = new Listener(soc ,this.game);
-                
-
-                
-                
-            } catch (IOException ex) {
-                System.out.println("Helllloo2");
-            }
-                
+            
+    
+            soc =sSoc.accept();
+            l = new Listener(soc);
+            l.start();    
+        }
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
         }
     }
     

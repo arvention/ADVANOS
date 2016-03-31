@@ -33,22 +33,21 @@ public class Listener extends Thread{
     private PrintWriter pw;
     private BufferedReader reader;
     private Socket soc;
-    private Game game;
+   
     private Sheep sheep;
     
-    public Listener(Socket soc, Game g) throws IOException{
+    public Listener(Socket soc) throws IOException{
         this.soc = soc;
         this.reader = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-        this.game = g;
-        PrintWriter pw = new PrintWriter(new 
+        
+        this.pw = new PrintWriter(new 
                 BufferedWriter(
                     new OutputStreamWriter(soc.getOutputStream())), true);
-        int id = game.generateID();
+        int id = Game.gameInstance.generateID();
         int initialx=1;
         int initialy=1;
-        pw.println();
         this.sheep = new Sheep(id,initialx,initialy,pw);
-        this.game.addSheep(sheep);
+        Game.gameInstance.addSheep(sheep);
         this.pw.println(id+","+initialx+","+initialy);
     }
     

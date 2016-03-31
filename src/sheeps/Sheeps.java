@@ -20,6 +20,8 @@ public class Sheeps {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -30,15 +32,13 @@ public class Sheeps {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
         }
-        
+        */
     //    GUIController guiController = GUIController.getInstance();
       //  guiController.getGUI().setVisible(true);
         
         Game g = Game.getInstance();
         g.startProtocol();
         
-        g.addSheep(new Sheep(1,2, g.generateID()));
-        g.addSheep(new Sheep(3,2, g.generateID()));
     }
     
 }
