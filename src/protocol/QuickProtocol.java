@@ -34,6 +34,11 @@ public class QuickProtocol extends Thread {
         this.pool.start();    
     }
     
+    public void Startpool(){
+        this.pool.start();
+    }
+    
+    
     @Override
     public void run(){
         //InetAddress address;
