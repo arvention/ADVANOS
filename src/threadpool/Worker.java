@@ -38,6 +38,10 @@ public class Worker extends Thread {
     }
     
     
-    
-    
+    public void BroadCast(){
+        
+        
+        
+        
+    }
 }
