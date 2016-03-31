@@ -80,7 +80,8 @@ public class Game{
 
     public String getScreenShot() {
         String ss = "";
-        for (Sheep s : sheepList) {
+        for (int i = 0; i < sheepList.size(); i++) {
+            Sheep s = sheepList.get(i);
             ss += s.getId() + "," + s.getX() + "," + s.getY() + "\n"; //"id,x,y\n"
         }
         return ss;

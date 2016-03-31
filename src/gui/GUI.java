@@ -58,7 +58,8 @@ public class GUI extends javax.swing.JFrame {
             grid[i/rows][i%columns].setText("");
         }
         
-        for(Sheep sheep : sheeps){
+        for(int i = 0; i < sheeps.size(); i++){
+            Sheep sheep = sheeps.get(i);
             grid[sheep.getX()][sheep.getY()].setText(String.valueOf(sheep.getId()));
         }
     }
