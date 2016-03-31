@@ -65,8 +65,9 @@ public class QuickProtocol extends Thread {
     public void Broadcast(){
         ArrayList<Sheep> sheeps = this.game.getSheeps();
         
-        for(Sheep s: sheeps){
-            this.pool.putTask((Task) s);
+        int size = sheeps.size();
+        for(int i = 0 ; i< size; i++){
+            this.pool.putTask((Task) sheeps.get(i));
         }
        //foreach sheep add in task;      
     }
