@@ -27,10 +27,10 @@ public class QuickProtocol extends Thread {
     @Override
     public void run(){
         byte[] received;
-        InetAddress address;
+        //InetAddress address;
         while(this.life){
             received = low.receive();
-            address = low.
+            //address = low.
             
         }
     }
