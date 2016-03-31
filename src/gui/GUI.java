@@ -52,19 +52,15 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void update(ArrayList<Sheep> sheeps){
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < columns; j++){
+                grid[i][j].setText("");
+            }
+        }
         for(Sheep sheep : sheeps){
-            //grid[sheep.getX()][sheep.getY()].setText(sheep.getID());
+            grid[sheep.getX()][sheep.getY()].setText(String.valueOf(sheep.getId()));
         }
     }
-    
-    /*public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel panelMain;
