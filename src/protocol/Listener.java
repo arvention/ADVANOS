@@ -56,21 +56,31 @@ public class Listener extends Thread{
         String[] list;
         int new_x;
         int new_y;
-
+        int update_x;
+        int update_y;
+        
         try {
             while((line= this.reader.readLine()) != null){
 
                 list = line.split(",");
                 new_x = Integer.parseInt(list[0]);
                 new_y = Integer.parseInt(list[1]);
+                update_x = this.sheep.getX() + new_x;
+                update_y = this.sheep.getY() + new_y;
                 //update sheep
-                 this.sheep.setX(this.sheep.getX() + new_x);
-                 this.sheep.setY(this.sheep.getY() + new_y);
+                if(update_x < 30 && update_x>= 0 && update_y < 30 && update_y >=0 ){
+                    this.sheep.setX(this.sheep.getX() + new_x);
+                    this.sheep.setY(this.sheep.getY() + new_y);
+                }
                 //updateseep
                 
             }
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            Game.gameInstance.remove(this.sheep);
         }   
         
     }

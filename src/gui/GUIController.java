@@ -20,16 +20,16 @@ public class GUIController {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
-                        System.out.println("UP");
+                        //System.out.println("UP");
                         break;
                     case KeyEvent.VK_DOWN:
-                        System.out.println("DOWN");
+                        //System.out.println("DOWN");
                         break;
                     case KeyEvent.VK_RIGHT:
-                        System.out.println("RIGHT");
+                        //System.out.println("RIGHT");
                         break;
                     case KeyEvent.VK_LEFT:
-                        System.out.println("LEFT");
+                        //System.out.println("LEFT");
                         break;
                 }
             }
