@@ -26,7 +26,7 @@ public class Game extends Thread {
         this.timer = new Timer(true);
         timer.scheduleAtFixedRate(new Ticker(), 0, 30);
         this.sheepList = new ArrayList<>();
-        //this.qp = new QuickProtocol(,500, this);
+        this.qp = new QuickProtocol(8,500, gameInstance);
     }
     
     public static Game getInstance(){
