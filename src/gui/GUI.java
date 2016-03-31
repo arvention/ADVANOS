@@ -10,6 +10,9 @@ public class GUI extends javax.swing.JFrame {
     
     public GUI() {
         initComponents();
+        
+        currentSheeps = new ArrayList<>();
+        
         columns = 30;
         rows = 30;
         grid = new JLabel[rows][columns];
@@ -52,14 +55,15 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void update(ArrayList<Sheep> sheeps){
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < columns; j++){
-                grid[i][j].setText("");
+        if(!currentSheeps.isEmpty()){
+            for(Sheep sheep : currentSheeps){
+                grid[sheep.getX()][sheep.getY()].setText("");
             }
         }
         for(Sheep sheep : sheeps){
             grid[sheep.getX()][sheep.getY()].setText(String.valueOf(sheep.getId()));
         }
+        currentSheeps = sheeps;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -68,4 +72,5 @@ public class GUI extends javax.swing.JFrame {
     private JLabel grid[][];
     private int columns;
     private int rows;
+    private ArrayList<Sheep> currentSheeps;
 }
