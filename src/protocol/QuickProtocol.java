@@ -32,18 +32,12 @@ public class QuickProtocol extends Thread {
     
     @Override
     public void run(){
-<<<<<<< HEAD
-        byte[] received;
         //InetAddress address;
-        while(this.life){
-            received = low.receive();
-            //address = low.
-=======
+        
        
         ServerSocket sSoc; 
         Socket soc=null;
         PrintWriter sender = null;
->>>>>>> origin/master
             
         
         while(live){
@@ -60,7 +54,6 @@ public class QuickProtocol extends Thread {
             }
                 
         }
-        
     }
     
     public void Broadcast(){     
