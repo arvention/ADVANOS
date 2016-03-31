@@ -1,8 +1,10 @@
 
 package gui;
 
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
+import model.Sheep;
 
 public class GUI extends javax.swing.JFrame {
     
@@ -49,6 +51,12 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void update(ArrayList<Sheep> sheeps){
+        for(Sheep sheep : sheeps){
+            //grid[sheep.getX()][sheep.getY()].setText(sheep.getID());
+        }
+    }
+    
     /*public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
