@@ -7,20 +7,26 @@ package model;
 
 import java.io.PrintWriter;
 import threadpool.Task;
+
 /**
  *
  * @author Arces
  */
-public class Sheep implements Task{
+public class Sheep implements Task {
     private int x, y, id;
     private PrintWriter pw;
-    
-    public Sheep(int x, int y, int id,PrintWriter pw) {
+
+    public Sheep() {
+
+    }
+
+    public Sheep(int x, int y, int id, PrintWriter pw) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.pw = pw;
     }
+
     /**
      * @return the x
      */
@@ -48,9 +54,37 @@ public class Sheep implements Task{
     public void setY(int y) {
         this.y = y;
     }
-    
+
     @Override
     public void work() {
-        pw.println(this.x+","+this.y);
+        pw.println(this.getX() + "," + this.getY());
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the pw
+     */
+    public PrintWriter getPw() {
+        return pw;
+    }
+
+    /**
+     * @param pw the pw to set
+     */
+    public void setPw(PrintWriter pw) {
+        this.pw = pw;
     }
 }
