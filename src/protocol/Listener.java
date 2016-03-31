@@ -46,7 +46,7 @@ public class Listener extends Thread{
         int id = Game.gameInstance.generateID();
         int initialx=1;
         int initialy=1;
-        this.sheep = new Sheep(id,initialx,initialy,pw);
+        this.sheep = new Sheep(initialx,initialy,id,pw);
         Game.gameInstance.addSheep(sheep);
         this.pw.println(id+","+initialx+","+initialy);
     }
