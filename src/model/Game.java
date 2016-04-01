@@ -31,7 +31,7 @@ public class Game{
     }
 
     public void startProtocol() {
-        this.qp = new QuickProtocol(8, 500, gameInstance);
+        this.qp = new QuickProtocol(8, 5000, gameInstance);
         this.qp.Startpool();
         this.qp.start();
         this.timer = new Timer(true);
