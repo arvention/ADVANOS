@@ -68,7 +68,7 @@ public class Listener extends Thread{
                 update_x = this.sheep.getX() + new_x;
                 update_y = this.sheep.getY() + new_y;
                 //update sheep
-                if(update_x < 30 && update_x>= 0 && update_y < 30 && update_y >=0 ){
+                if(update_x < 100 && update_x>= 0 && update_y < 100 && update_y >=0 ){
                     this.sheep.setX(this.sheep.getX() + new_x);
                     this.sheep.setY(this.sheep.getY() + new_y);
                 }

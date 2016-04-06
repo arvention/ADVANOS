@@ -43,7 +43,7 @@ public class QuickProtocol extends Thread {
     public void run(){
         //InetAddress address;
         
-       
+        int num_clients = 0;
         ServerSocket sSoc; 
         Socket soc=null;
         PrintWriter sender = null;
@@ -51,11 +51,11 @@ public class QuickProtocol extends Thread {
         try {
             sSoc = new ServerSocket(port); 
         while(live){
-            
-    
             soc =sSoc.accept();
             l = new Listener(soc);
             l.start();    
+            num_clients++;
+            System.out.println("Number of clients "+ num_clients);
         }
         } catch (IOException ex) {
             System.out.println(ex.toString());
