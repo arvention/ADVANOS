@@ -66,7 +66,7 @@ public class Game{
     public synchronized void remove(Sheep s){
         this.sheepList.remove(s);
     }
-    public synchronized ArrayList<Sheep> getSheeps() {
+    public ArrayList<Sheep> getSheeps() {
         return this.sheepList;
     }
 
