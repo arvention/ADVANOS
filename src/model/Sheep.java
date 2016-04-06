@@ -15,6 +15,7 @@ import threadpool.Task;
 public class Sheep implements Task {
     private int x, y, id;
     private PrintWriter pw;
+    public long mil;
 
     public Sheep() {
 
@@ -24,6 +25,13 @@ public class Sheep implements Task {
         this.x = x;
         this.y = y;
         this.id = id;
+    }
+    
+    public Sheep(int x, int y, int id,long mil) {
+        this.x = x;
+        this.y = y;
+        this.id = id;
+        this.mil = mil;
     }
     
     public Sheep(int x, int y, int id, PrintWriter pw) {
