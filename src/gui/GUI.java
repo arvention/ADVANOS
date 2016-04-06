@@ -2,6 +2,7 @@
 package gui;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
 import model.Sheep;
@@ -11,13 +12,13 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         
-        columns = 30;
-        rows = 30;
+        columns = 60;
+        rows = 60;
         grid = new JLabel[rows][columns];
         
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
-                //grid[i][j] = new JLabel("x");
+                grid[i][j] = new JLabel("x");
                 grid[i][j] = new JLabel();
                 grid[i][j].setHorizontalAlignment(CENTER);
                 grid[i][j].setVerticalAlignment(CENTER);
@@ -35,6 +36,7 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sheeps");
         setBounds(new java.awt.Rectangle(0, 0, 600, 500));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         panelMain.setLayout(new java.awt.GridLayout(30, 30));
 
@@ -46,7 +48,7 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
 
         pack();
