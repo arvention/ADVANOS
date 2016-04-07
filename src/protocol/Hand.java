@@ -58,7 +58,7 @@ public class Hand implements Task {
             }
         }else{
             int id = bf.getInt();
-            System.out.println(id);
+            //System.out.println(id);
             Sheep s = UDPGame.gameInstance.getSheeps().get(id-1);
             //if(s.mil < mil){
             tempx = bf.getInt() + s.getX();
