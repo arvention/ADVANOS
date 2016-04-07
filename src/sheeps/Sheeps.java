@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
 import model.Sheep;
+import model.UDPGame;
 import protocol.UDPProtocol;
 
 /**
@@ -40,7 +41,8 @@ public class Sheeps {
         */
     //    GUIController guiController = GUIController.getInstance();
       //  guiController.getGUI().setVisible(true);
-        UDPProtocol up;
+       
+        /*UDPProtocol up;
         try {
             up = new UDPProtocol(8,5000);
             up.start();
@@ -49,9 +51,15 @@ public class Sheeps {
         } catch (UnknownHostException ex) {
             Logger.getLogger(Sheeps.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
         
+        //TCP-IP
         //Game g = Game.getInstance();
         //g.startProtocol();
+        
+        //UDP
+        UDPGame g = UDPGame.getInstance();
+        g.startProtocol();
         
     }
     
