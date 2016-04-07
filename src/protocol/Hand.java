@@ -25,11 +25,13 @@ public class Hand implements Task {
     private byte[] d;
     private InetAddress ad;
     private int port;
+    private int num_clients;
     
     public Hand(byte[] data, InetAddress ad,int port){
         this.d = data;
         this.ad = ad;
         this.port = port;
+        this.num_clients = 0;
     }
     
     @Override
@@ -53,6 +55,8 @@ public class Hand implements Task {
                 UDPProtocol.send(packet);            
                 sheep = new Sheep(initialx,initialy,id,mil);
                 UDPGame.gameInstance.addSheep(sheep);
+                this.num_clients++;
+                System.out.println(this.num_clients);
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }

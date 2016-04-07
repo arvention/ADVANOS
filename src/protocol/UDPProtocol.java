@@ -49,9 +49,9 @@ public class UDPProtocol extends Thread{
         Hand h;
         while(this.life){
             try {
-                System.out.println("Receiving");
+                //System.out.println("Receiving");
                 UDPProtocol.socket.receive(packet);
-                System.out.println("Received!");
+                //System.out.println("Received!");
                 h = new Hand(packet.getData(), packet.getAddress(),packet.getPort());
                 pool.putTask(h);
                 packet.setData(new byte[1024*1]);
