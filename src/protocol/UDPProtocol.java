@@ -43,12 +43,15 @@ public class UDPProtocol extends Thread{
          
      
     public void run(){
+        System.out.println("Server running");
         byte[] buffer = new byte[1024*1];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         Hand h;
         while(this.life){
             try {
+                System.out.println("Receiving");
                 UDPProtocol.socket.receive(packet);
+                System.out.println("Received!");
                 h = new Hand(packet.getData(), packet.getAddress(),packet.getPort());
                 pool.putTask(h);
                 packet.setData(new byte[1024*1]);

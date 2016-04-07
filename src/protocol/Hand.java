@@ -33,7 +33,7 @@ public class Hand implements Task {
     
     @Override
     public void work() {
-        
+        int tempx,tempy;
         ByteBuffer bf = ByteBuffer.wrap(this.d);
         long mil = bf.getLong();
         Sheep sheep;
@@ -59,11 +59,16 @@ public class Hand implements Task {
             int id = bf.getInt();
             Sheep s = Game.gameInstance.getSheeps().get(id);
             //if(s.mil < mil){
-                s.setX(bf.getInt());
-                s.setY(bf.getInt());
-            //}
+            tempx = bf.getInt() + s.getX();
+            tempy = bf.getInt() + s.getY();
             
-           
+            if(tempx < 60 && tempx>= 0 && tempy < 60 && tempy >=0 ){
+                s.setX(tempx);
+                s.setY(tempy);
+            }
+            
+            //} 
+                
         }
             
     }

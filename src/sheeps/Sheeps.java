@@ -7,8 +7,13 @@ package sheeps;
 
 import gui.GUI;
 import gui.GUIController;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Game;
 import model.Sheep;
+import protocol.UDPProtocol;
 
 /**
  *
@@ -35,9 +40,18 @@ public class Sheeps {
         */
     //    GUIController guiController = GUIController.getInstance();
       //  guiController.getGUI().setVisible(true);
+        UDPProtocol up;
+        try {
+            up = new UDPProtocol(8,5000);
+            up.start();
+        } catch (SocketException ex) {
+            Logger.getLogger(Sheeps.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Sheeps.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        Game g = Game.getInstance();
-        g.startProtocol();
+        //Game g = Game.getInstance();
+        //g.startProtocol();
         
     }
     
