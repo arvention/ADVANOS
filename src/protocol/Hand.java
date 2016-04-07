@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
 import model.Sheep;
+import model.UDPGame;
 import threadpool.Task;
 import threadpool.Worker;
 /**
@@ -39,7 +40,7 @@ public class Hand implements Task {
         Sheep sheep;
         if(mil == -1){
             //create sheep
-            int id = Game.gameInstance.generateID();
+            int id = UDPGame.gameInstance.generateID();
             int initialx=1;
             int initialy=1;
             ByteBuffer to_send = ByteBuffer.allocate(200);
@@ -51,13 +52,13 @@ public class Hand implements Task {
             try {
                 UDPProtocol.send(packet);            
                 sheep = new Sheep(initialx,initialy,id,mil);
-                Game.gameInstance.addSheep(sheep);
+                UDPGame.gameInstance.addSheep(sheep);
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             int id = bf.getInt();
-            Sheep s = Game.gameInstance.getSheeps().get(id);
+            Sheep s = UDPGame.gameInstance.getSheeps().get(id);
             //if(s.mil < mil){
             tempx = bf.getInt() + s.getX();
             tempy = bf.getInt() + s.getY();
