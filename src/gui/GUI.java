@@ -18,7 +18,7 @@ public class GUI extends javax.swing.JFrame {
         
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
-                grid[i][j] = new JLabel("x");
+                //grid[i][j] = new JLabel("x");
                 grid[i][j] = new JLabel();
                 grid[i][j].setHorizontalAlignment(CENTER);
                 grid[i][j].setVerticalAlignment(CENTER);
@@ -38,7 +38,7 @@ public class GUI extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 600, 500));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        panelMain.setLayout(new java.awt.GridLayout(30, 30));
+        panelMain.setLayout(new java.awt.GridLayout(60, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
