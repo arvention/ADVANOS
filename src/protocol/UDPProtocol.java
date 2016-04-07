@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
@@ -29,6 +30,7 @@ public class UDPProtocol extends Thread{
     private boolean life;
     private InetAddress all_address;
     private int all_port;
+    public static AtomicInteger num_clients = new AtomicInteger(0);
     
     public UDPProtocol(int worker, int tasks) throws SocketException, UnknownHostException{
         byte[] b = new byte[1024*5];
