@@ -42,18 +42,18 @@ public class Hand implements Task {
         Sheep sheep;
         if(mil == -1){
             //create sheep
-            int id = UDPGame.gameInstance.generateID();
+            int gen_id = UDPGame.gameInstance.generateID();
             int initialx=1;
             int initialy=1;
             ByteBuffer to_send = ByteBuffer.allocate(200);
-            to_send.putInt(id);
+            to_send.putInt(gen_id);
             to_send.putInt(initialx);
             to_send.putInt(initialy);
             byte[] buffer = to_send.array();
             DatagramPacket packet = new DatagramPacket(buffer,buffer.length,this.ad,this.port); 
             try {
                 UDPProtocol.send(packet);            
-                sheep = new Sheep(initialx,initialy,id,mil);
+                sheep = new Sheep(initialx,initialy,gen_id);
                 UDPGame.gameInstance.addSheep(sheep);
                 this.num_clients++;
                 System.out.println(this.num_clients);
