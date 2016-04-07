@@ -73,7 +73,16 @@ public class UDPGame {
         }
     }
 
-    public synchronized void addSheep(Sheep sheep) {
+    public synchronized int createSheep(int x,int y){
+        int id = generateID();
+        Sheep sheep = new Sheep(x,y,id);
+        addSheep(sheep);
+        
+        return id;
+    }
+    
+    
+    public void addSheep(Sheep sheep) {
         sheepList.add(sheep);
     }
     
@@ -84,7 +93,7 @@ public class UDPGame {
         return this.sheepList;
     }
 
-    public synchronized int generateID() {
+    public int generateID() {
         if (sheepList.isEmpty()) {
             return 1;
         } else {
