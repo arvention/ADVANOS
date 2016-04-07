@@ -102,7 +102,7 @@ public class UDPGame {
     }
 
     public byte[] getScreenShot() {
-        ByteBuffer bb = ByteBuffer.allocate(1024 * 5);
+        ByteBuffer bb = ByteBuffer.allocate(1024 * 20);
         bb.putLong(System.currentTimeMillis());
         
         for (int i = 0; i < sheepList.size(); i++) {
