@@ -27,8 +27,10 @@ public class Hand implements Task {
     private int port;
     private int server_id;
     private UDPGame game;
+    private UDPProtocol up;
     
-    public Hand(byte[] data, InetAddress ad,int port, int server_id,UDPGame game){
+    public Hand(byte[] data, InetAddress ad,int port, int server_id,UDPGame game,UDPProtocol up){
+        this.up= up;
         this.game = game;
         this.d = data;
         this.ad = ad;
@@ -58,7 +60,7 @@ public class Hand implements Task {
             byte[] buffer = to_send.array();
             DatagramPacket packet = new DatagramPacket(buffer,buffer.length,this.ad,this.port); 
             try {
-                UDPProtocol.send(packet);            
+                this.up.send(packet);            
                 
                 UDPProtocol.num_clients.incrementAndGet();
                 System.out.println("number of clients:" + UDPProtocol.num_clients);
@@ -71,7 +73,7 @@ public class Hand implements Task {
                 to_send.putInt(server_id);
                 byte[] buffer = to_send.array();
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length,this.ad,this.port);    
-                UDPProtocol.send(packet);
+                this.up.send(packet);
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }

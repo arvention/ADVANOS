@@ -28,7 +28,7 @@ public class UDPProtocol extends Thread{
     private ThreadPool pool;
     private int port;
     private int server_id;
-    private static DatagramSocket socket;
+    private DatagramSocket socket;
     private boolean life;
     private InetAddress all_address;
     private int all_port;
@@ -43,8 +43,7 @@ public class UDPProtocol extends Thread{
         this.life = true;
         this.all_address = InetAddress.getByName("224.2.2.3");
         this.all_port = 8889;
-        
-        UDPProtocol.socket = new DatagramSocket(this.port);
+        socket = new DatagramSocket(this.port);
         this.pool = new ThreadPool(worker, tasks);
         this.pool.start();
     } 
@@ -58,9 +57,9 @@ public class UDPProtocol extends Thread{
         while(this.life){
             try {
                 //System.out.println("Receiving");
-                UDPProtocol.socket.receive(packet);
+                this.socket.receive(packet);
                 //System.out.println("Received!");
-                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort(),this.server_id,game);
+                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort(),this.server_id,game,this);
                 pool.putTask(h);
                 packet.setData(new byte[1024*1]);
                 
@@ -71,13 +70,13 @@ public class UDPProtocol extends Thread{
     
     }
     
-    public static synchronized void send(DatagramPacket p) throws IOException{
-        UDPProtocol.socket.send(p);
+    public synchronized void send(DatagramPacket p) throws IOException{
+        this.socket.send(p);
     }
     
     public void broadcast(byte[] b) throws IOException{
         DatagramPacket outPacket = new DatagramPacket(b, b.length, this.all_address, this.all_port);
-        UDPProtocol.socket.send(outPacket);
+        this.socket.send(outPacket);
     }
     
     
