@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
@@ -28,14 +29,16 @@ public class Hand implements Task {
     private int server_id;
     private UDPGame game;
     private UDPProtocol up;
+    private AtomicInteger num_clients;
     
-    public Hand(byte[] data, InetAddress ad,int port, int server_id,UDPGame game,UDPProtocol up){
+    public Hand(byte[] data, InetAddress ad,int port, int server_id,UDPGame game,UDPProtocol up,AtomicInteger clients){
         this.up= up;
         this.game = game;
         this.d = data;
         this.ad = ad;
         this.port = port;
         this.server_id = server_id;
+        this.num_clients = clients;
         
     }
     
@@ -62,8 +65,8 @@ public class Hand implements Task {
             try {
                 this.up.send(packet);            
                 
-                UDPProtocol.num_clients.incrementAndGet();
-                System.out.println(this.server_id + ": number of clients:" + UDPProtocol.num_clients);
+                this.num_clients.incrementAndGet();
+                System.out.println(this.server_id + ": number of clients:" + this.num_clients);
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }

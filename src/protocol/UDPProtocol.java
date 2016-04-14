@@ -32,7 +32,7 @@ public class UDPProtocol extends Thread{
     private boolean life;
     private InetAddress all_address;
     private int all_port;
-    public static AtomicInteger num_clients = new AtomicInteger(0);
+    public AtomicInteger num_clients = new AtomicInteger(0);
     private UDPGame game;
     
     public UDPProtocol(int worker, int tasks,int port,int id,UDPGame game) throws SocketException, UnknownHostException{
@@ -59,7 +59,7 @@ public class UDPProtocol extends Thread{
                 //System.out.println("Receiving");
                 this.socket.receive(packet);
                 //System.out.println("Received!");
-                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort(),this.server_id,game,this);
+                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort(),this.server_id,game,this,num_clients);
                 pool.putTask(h);
                 packet.setData(new byte[1024*1]);
                 
