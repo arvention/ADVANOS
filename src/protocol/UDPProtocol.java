@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Game;
+import model.UDPGame;
 import threadpool.ThreadPool;
 
 /**
@@ -25,14 +26,19 @@ import threadpool.ThreadPool;
 public class UDPProtocol extends Thread{
     
     private ThreadPool pool;
-    private final int port =1108;
+    private int port;
+    private int server_id;
     private static DatagramSocket socket;
     private boolean life;
     private InetAddress all_address;
     private int all_port;
     public static AtomicInteger num_clients = new AtomicInteger(0);
+    private UDPGame game;
     
-    public UDPProtocol(int worker, int tasks) throws SocketException, UnknownHostException{
+    public UDPProtocol(int worker, int tasks,int port,int id,UDPGame game) throws SocketException, UnknownHostException{
+        this.game= game;
+        this.port = port;
+        this.server_id = id;
         byte[] b = new byte[1024*5];
         this.life = true;
         this.all_address = InetAddress.getByName("224.2.2.3");
@@ -54,7 +60,7 @@ public class UDPProtocol extends Thread{
                 //System.out.println("Receiving");
                 UDPProtocol.socket.receive(packet);
                 //System.out.println("Received!");
-                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort());
+                h = new Hand(packet.getData(), packet.getAddress(),packet.getPort(),this.server_id,game);
                 pool.putTask(h);
                 packet.setData(new byte[1024*1]);
                 

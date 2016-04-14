@@ -26,18 +26,23 @@ public class UDPGame {
     public ArrayList<Sheep> sheepList;
     private UDPProtocol up;
     private Timer timer;
-    private GUI gui;
-    public static UDPGame gameInstance = new UDPGame();
-
-    private UDPGame() {
-        this.gui = new GUI();
-        gui.setVisible(true);
+    //private GUI gui;
+    //public static UDPGame gameInstance = new UDPGame();
+    
+    private int id;
+    private int port;
+    
+    public UDPGame(int id, int port) {
+        this.id=id;
+        this.port=port;
+        //this.gui = new GUI();
+        //gui.setVisible(true);
         this.sheepList = new ArrayList<>();
     }
-
+    
     public void startProtocol() {
         try {
-            this.up = new UDPProtocol(8, 5000);
+            this.up = new UDPProtocol(8, 5000,this.port,this.id,this);
         } catch (SocketException ex) {
             Logger.getLogger(UDPGame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnknownHostException ex) {
@@ -47,7 +52,7 @@ public class UDPGame {
         this.timer = new Timer(true);
         timer.scheduleAtFixedRate(new Ticker(), 0, 30);
     }
-
+/*
     public static UDPGame getInstance() {
         return gameInstance;
     }
@@ -69,7 +74,7 @@ public class UDPGame {
             } catch (IOException ex) {
                 Logger.getLogger(UDPGame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            gui.update(sheepList);
+            //gui.update(sheepList);
         }
     }
 
@@ -104,9 +109,10 @@ public class UDPGame {
     public byte[] getScreenShot() {
         ByteBuffer bb = ByteBuffer.allocate(1024 * 20);
         bb.putLong(System.currentTimeMillis());
-        
+        bb.putInt(this.id);
         for (int i = 0; i < sheepList.size(); i++) {
             Sheep s = sheepList.get(i);
+            
             bb.putInt(s.getId());
             bb.putInt(s.getX());
             bb.putInt(s.getY());

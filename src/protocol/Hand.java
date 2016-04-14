@@ -25,11 +25,15 @@ public class Hand implements Task {
     private byte[] d;
     private InetAddress ad;
     private int port;
+    private int server_id;
+    private UDPGame game;
     
-    public Hand(byte[] data, InetAddress ad,int port){
+    public Hand(byte[] data, InetAddress ad,int port, int server_id,UDPGame game){
+        this.game = game;
         this.d = data;
         this.ad = ad;
         this.port = port;
+        this.server_id = server_id;
         
     }
     
@@ -45,8 +49,9 @@ public class Hand implements Task {
             int initialx=1;
             int initialy=1;
             ByteBuffer to_send = ByteBuffer.allocate(200);
-            
-            gen_id = UDPGame.gameInstance.createSheep(initialx, initialy);
+                    
+            gen_id = game.createSheep(initialx, initialy);
+            to_send.putInt(server_id);
             to_send.putInt(gen_id);
             to_send.putInt(initialx);
             to_send.putInt(initialy);
@@ -60,10 +65,21 @@ public class Hand implements Task {
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        }else if(mil == -2){
+            try {
+                ByteBuffer to_send = ByteBuffer.allocate(200);
+                to_send.putInt(server_id);
+                byte[] buffer = to_send.array();
+                DatagramPacket packet = new DatagramPacket(buffer,buffer.length,this.ad,this.port);    
+                UDPProtocol.send(packet);
+            } catch (IOException ex) {
+                Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
             int id = bf.getInt();
             //System.out.println(id);
-            Sheep s = UDPGame.gameInstance.getSheeps().get(id-1);
+            Sheep s = this.game.getSheeps().get(id-1);
             //if(s.mil < mil){
             tempx = bf.getInt() + s.getX();
             tempy = bf.getInt() + s.getY();
