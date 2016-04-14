@@ -25,9 +25,9 @@ public class Sheeps {
         //g.startProtocol();
         
         //UDP
-        //UDPGame g = new UDPGame(0,1108);
+        UDPGame g = new UDPGame(0,1108);
         UDPGame g2 = new UDPGame(1,1109);
-        //g.startProtocol();
+        g.startProtocol();
         g2.startProtocol();
         
     }
