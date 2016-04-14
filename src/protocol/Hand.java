@@ -63,7 +63,7 @@ public class Hand implements Task {
                 this.up.send(packet);            
                 
                 UDPProtocol.num_clients.incrementAndGet();
-                System.out.println("number of clients:" + UDPProtocol.num_clients);
+                System.out.println(this.server_id + ": number of clients:" + UDPProtocol.num_clients);
             } catch (IOException ex) {
                 Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
             }
