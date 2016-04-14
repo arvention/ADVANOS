@@ -53,7 +53,7 @@ public class Hand implements Task {
             ByteBuffer to_send = ByteBuffer.allocate(200);
                     
             gen_id = game.createSheep(initialx, initialy);
-            to_send.putInt(server_id);
+            //to_send.putInt(server_id);
             to_send.putInt(gen_id);
             to_send.putInt(initialx);
             to_send.putInt(initialy);
